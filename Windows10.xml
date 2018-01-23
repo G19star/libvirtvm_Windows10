@@ -10,25 +10,22 @@ or other application using the libvirt API.
   <uuid>cb4fdc41-90b3-4984-8a85-a4926a30ac96</uuid>
   <memory unit='KiB'>8290304</memory>
   <currentMemory unit='KiB'>8290304</currentMemory>
-  <memoryBacking>
-    <hugepages/>
-  </memoryBacking>
   <vcpu placement='static'>8</vcpu>
-  <iothreads>4</iothreads>
   <cputune>
-    <vcpupin vcpu='0' cpuset='0'/>
-    <vcpupin vcpu='1' cpuset='1'/>
-    <vcpupin vcpu='2' cpuset='2'/>
-    <vcpupin vcpu='3' cpuset='3'/>
+    <vcpupin vcpu='0' cpuset='2'/>
+    <vcpupin vcpu='1' cpuset='22'/>
+    <vcpupin vcpu='2' cpuset='3'/>
+    <vcpupin vcpu='3' cpuset='23'/>
     <vcpupin vcpu='4' cpuset='4'/>
-    <vcpupin vcpu='5' cpuset='5'/>
-    <vcpupin vcpu='6' cpuset='6'/>
-    <vcpupin vcpu='7' cpuset='7'/>
-    <iothreadpin iothread='1' cpuset='0-1'/>
-    <iothreadpin iothread='2' cpuset='2-3'/>
-    <iothreadpin iothread='3' cpuset='4-5'/>
-    <iothreadpin iothread='4' cpuset='6-7'/>
+    <vcpupin vcpu='5' cpuset='24'/>
+    <vcpupin vcpu='6' cpuset='5'/>
+    <vcpupin vcpu='7' cpuset='25'/>
+    <emulatorpin cpuset='0-1,20-21'/>
   </cputune>
+  <numatune>
+    <memory mode='strict' nodeset='0'/>
+    <memnode cellid='0' mode='strict' nodeset='0'/>
+  </numatune>
   <os>
     <type arch='x86_64' machine='pc-i440fx-artful'>hvm</type>
     <loader readonly='yes' type='pflash'>/usr/share/OVMF/OVMF_CODE.fd</loader>
@@ -52,9 +49,11 @@ or other application using the libvirt API.
       <hidden state='on'/>
     </kvm>
   </features>
-  <cpu mode='host-passthrough' check='none'>
-    <topology sockets='1' cores='8' threads='1'/>
-    <feature policy='disable' name='smep'/>
+  <cpu mode='host-passthrough' check='partial'>
+    <topology sockets='1' cores='4' threads='2'/>
+    <numa>
+      <cell id='0' cpus='0-7' memory='8290304' unit='KiB'/>
+    </numa>
   </cpu>
   <clock offset='utc'>
     <timer name='rtc' tickpolicy='catchup'/>
