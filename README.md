@@ -9,11 +9,13 @@ Host system specifications:
 - 128GB DDR3 ECC Ram
 - Dell Perc H200 (flashed to IT mode, gives us 8 6Gb/s ports)
 
+Running Ubuntu 18.04 LTS
+
 Hints:
 
 - To test the overal system performance you can use PerformanceTest from PassMark.
 - You can dump the vbios using nvflash for linux
-- You need to patch the bios using: https://github.com/Matoking/NVIDIA-vBIOS-VFIO-Patcher
+- You need to patch the vbios using: https://github.com/Matoking/NVIDIA-vBIOS-VFIO-Patcher
 
 The grub command line parameters used for my system:
 ```
