@@ -7,7 +7,7 @@ The purpose of this client is browsing the web and movie playback using the Plex
 - Intel server board s2600cp
 - 2x Intel Xeon E5-2680 v2 (10 cores 20 Threads)
 - 128GB DDR3 ECC Ram
-- Dell Perc H200 (flashed to IT mode, gives us 8 6Gb/s ports)
+- Dell Perc H200 (flashed to IT mode, 8x 6Gb/s ports)
 
 Running Ubuntu 18.04 LTS
 
