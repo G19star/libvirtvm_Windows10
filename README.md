@@ -15,7 +15,7 @@ Hints:
 - You can dump the vbios using nvflash for linux
 - You need to patch the bios using: https://github.com/Matoking/NVIDIA-vBIOS-VFIO-Patcher
 
-The grub command used for my system:
+The grub command line parameters used for my system:
 ```
 GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau intel_iommu=on iommu=pt video=efifb:off,vesafb:off"
 ```
