@@ -19,7 +19,7 @@ Running Ubuntu 18.04 LTS
 - A good way to start building the VM is using virt-install:
 
 ```
-virt-install --name Windows10_Q35  --boot uefi --features kvm_hidden=on --ram=8096 --vcpus=8 --cpu host --hvm --disk path=/dev/sdx --cdrom /home/michel/ISOs/Windows10.iso --graphics vnc --machine pc-q35-artful
+virt-install --name Windows10_Q35  --boot uefi --features kvm_hidden=on --ram=8096 --vcpus=8 --cpu host --hvm --disk path=/dev/sdx --cdrom /path/to/Windows10.iso --graphics vnc --machine pc-q35-artful
 ```
 
 **Grub**
