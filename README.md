@@ -2,7 +2,7 @@
 This XML is an example for running a Windows10 machine with a NVIDIA GT1030 using the Q35 chipset.
 The purpose of this client is browsing the web and movie playback using the Plex Theatre Client.
 
-Host system specifications:
+**Host system specifications:**
 
 - Intel server board s2600cp
 - 2x Intel Xeon E5-2680 v2 (10 cores 20 Threads)
@@ -11,7 +11,7 @@ Host system specifications:
 
 Running Ubuntu 18.04 LTS
 
-Hints:
+**Hints:** 
 
 - To test the overal system performance you can use PerformanceTest from PassMark.
 - You can dump the vbios using nvflash for linux
