@@ -22,6 +22,8 @@ Running Ubuntu 18.04 LTS
 virt-install --name Windows10_Q35  --boot uefi --features kvm_hidden=on --ram=8096 --vcpus=8 --cpu host --hvm --disk path=/dev/sdx --cdrom /home/michel/ISOs/Windows10.iso --graphics vnc --machine pc-q35-artful
 ```
 
+**Grub**
+
 The grub command line parameters used for my system:
 ```
 GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau intel_iommu=on iommu=pt video=efifb:off,vesafb:off"
