@@ -37,11 +37,9 @@ or other application using the libvirt API.
     <apic/>
     <hyperv>
       <relaxed state='on'/>
-      <vapic state='on'/>
       <spinlocks state='on' retries='8191'/>
       <vpindex state='on'/>
       <runtime state='on'/>
-      <synic state='on'/>
       <stimer state='on'/>
       <reset state='on'/>
       <vendor_id state='on' value='none'/>
@@ -50,14 +48,13 @@ or other application using the libvirt API.
       <hidden state='on'/>
     </kvm>
   </features>
-  <cpu mode='host-model' check='partial'>
-    <model fallback='allow'/>
+  <cpu mode='host-passthrough' check='partial'>
     <topology sockets='1' cores='4' threads='2'/>
     <numa>
       <cell id='0' cpus='0-7' memory='8290304' unit='KiB'/>
     </numa>
   </cpu>
-  <clock offset='utc'>
+  <clock offset='localtime'>
     <timer name='rtc' tickpolicy='catchup'/>
     <timer name='pit' tickpolicy='delay'/>
     <timer name='hpet' present='no'/>
@@ -76,8 +73,8 @@ or other application using the libvirt API.
     <disk type='block' device='disk'>
       <driver name='qemu' type='raw' cache='none' io='native'/>
       <source dev='/dev/sdb'/>
-      <target dev='sda' bus='sata'/>
-      <address type='drive' controller='0' bus='0' target='0' unit='0'/>
+      <target dev='sda' bus='virtio'/>
+      <address type='pci' domain='0x0000' bus='0x05' slot='0x00' function='0x0'/>
     </disk>
     <disk type='file' device='cdrom'>
       <driver name='qemu' type='raw'/>
@@ -131,10 +128,16 @@ or other application using the libvirt API.
       <target chassis='4' port='0x11'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x1'/>
     </controller>
+    <controller type='pci' index='5' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='5' port='0x8'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x0'/>
+    </controller>
     <interface type='bridge'>
       <mac address='52:54:00:68:50:ce'/>
       <source bridge='br0'/>
       <model type='virtio'/>
+      <driver name='vhost' queues='8'/>
       <address type='pci' domain='0x0000' bus='0x02' slot='0x01' function='0x0'/>
     </interface>
     <serial type='pty'>
@@ -145,25 +148,18 @@ or other application using the libvirt API.
     </console>
     <input type='mouse' bus='ps2'/>
     <input type='keyboard' bus='ps2'/>
-    <graphics type='vnc' port='-1' autoport='yes'>
-      <listen type='address'/>
-    </graphics>
-    <video>
-      <model type='cirrus' vram='16384' heads='1' primary='yes'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x0'/>
-    </video>
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <source>
         <address domain='0x0000' bus='0x05' slot='0x00' function='0x0'/>
       </source>
-      <rom bar='on' file='/usr/share/kvm/R7260x.rom'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0' multifunction='on'/>
+      <rom bar='on' file='/usr/share/kvm/gt1030_patched.rom'/>
+      <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0' multifunction='on'/>
     </hostdev>
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <source>
         <address domain='0x0000' bus='0x05' slot='0x00' function='0x1'/>
       </source>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x1' multifunction='on'/>
+      <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x1' multifunction='on'/>
     </hostdev>
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <driver name='vfio'/>
