@@ -7,7 +7,7 @@ or other application using the libvirt API.
 
 <domain type='kvm'>
   <name>Windows10_Q35</name>
-  <uuid>fce8e60a-4b36-4c3f-b37e-3e142bdac263</uuid>
+  <uuid>2416edbf-8ab2-4cb0-ab4c-3f173fac4d63</uuid>
   <memory unit='KiB'>8290304</memory>
   <currentMemory unit='KiB'>8290304</currentMemory>
   <vcpu placement='static'>8</vcpu>
@@ -130,14 +130,21 @@ or other application using the libvirt API.
     </controller>
     <controller type='pci' index='5' model='pcie-root-port'>
       <model name='pcie-root-port'/>
-      <target chassis='5' port='0x8'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x0'/>
+      <target chassis='5' port='0x12'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x2'/>
+    </controller>
+    <controller type='pci' index='6' model='pcie-root-port'>
+      <model name='ioh3420'/>
+      <target chassis='6' port='0x13'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x3'/>
+    </controller>
+    <controller type='virtio-serial' index='0'>
+      <address type='pci' domain='0x0000' bus='0x03' slot='0x00' function='0x0'/>
     </controller>
     <interface type='bridge'>
-      <mac address='52:54:00:68:50:ce'/>
+      <mac address='52:54:00:86:fe:b2'/>
       <source bridge='br0'/>
-      <model type='virtio'/>
-      <driver name='vhost' queues='8'/>
+      <model type='e1000'/>
       <address type='pci' domain='0x0000' bus='0x02' slot='0x01' function='0x0'/>
     </interface>
     <serial type='pty'>
@@ -148,28 +155,31 @@ or other application using the libvirt API.
     </console>
     <input type='mouse' bus='ps2'/>
     <input type='keyboard' bus='ps2'/>
+    <sound model='ich6'>
+      <address type='pci' domain='0x0000' bus='0x02' slot='0x02' function='0x0'/>
+    </sound>
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <source>
         <address domain='0x0000' bus='0x05' slot='0x00' function='0x0'/>
       </source>
       <rom bar='on' file='/usr/share/kvm/gt1030_patched.rom'/>
-      <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0' multifunction='on'/>
+      <address type='pci' domain='0x0000' bus='0x06' slot='0x00' function='0x0' multifunction='on'/>
     </hostdev>
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <source>
         <address domain='0x0000' bus='0x05' slot='0x00' function='0x1'/>
       </source>
-      <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x1' multifunction='on'/>
+      <address type='pci' domain='0x0000' bus='0x06' slot='0x00' function='0x1'/>
     </hostdev>
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <driver name='vfio'/>
       <source>
         <address domain='0x0000' bus='0x00' slot='0x1a' function='0x0'/>
       </source>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
+      <address type='pci' domain='0x0000' bus='0x02' slot='0x03' function='0x0'/>
     </hostdev>
     <memballoon model='virtio'>
-      <address type='pci' domain='0x0000' bus='0x03' slot='0x00' function='0x0'/>
+      <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
     </memballoon>
   </devices>
 </domain>
